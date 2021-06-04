@@ -2,7 +2,7 @@
 
 ////run tests on requests from parallels finder run some in hebrew mode and english mode
 
-let sizes = [[1000, 660]]//'iphone-x',
+let sizes = ['iphone-x',[1000, 660]]
 
 sizes.forEach((size) => {
 
@@ -29,12 +29,12 @@ sizes.forEach((size) => {
   
     
   
-    it('Error message for parallels/api response with a delay of 30 second when clicking the run button'+
+    it('Error message for parallels/api response with a delay of 60 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
       cy.setLanguageMode('Hebrew')
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
-        delaySeconds:30,
+        delaySeconds:60*5,
         message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
       })
     })
@@ -49,12 +49,12 @@ sizes.forEach((size) => {
       })
     })
 
-    it('Error message for parallels/api response with a delay of 30 second when clicking the run button'+
+    it('Error message for parallels/api response with a delay of 60 second when clicking the run button'+
     ' of search page in english mode',()=>{
       cy.setLanguageMode('English')
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
-        delaySeconds:30,
+        delaySeconds:60*5,
         message:'Oops. Something went wrong Unable to display the Parallels screen'
       })
     })

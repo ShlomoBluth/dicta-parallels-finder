@@ -17,7 +17,7 @@ Cypress.Commands.add('setLanguageMode',(language)=>{
       if(classAttr!=languageMode)
       {
         cy.log(classAttr+' classAttr '+languageMode+' languageMode')
-        cy.get('a').contains(/^עברית$|^English$/g).click();
+        cy.get('a').contains(/^עברית$|^English$/g).click({force:true});
       }
       if(languageMode=='he'){
         cy.get('a').contains(/^English$/).should('exist')
