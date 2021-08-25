@@ -1,1 +1,12 @@
-{}
+{
+    "baseUrl":"https://citation-dev--gracious-gates-eda4d9.netlify.app/",
+    "reporter": "cypress-multi-reporters",
+    "failOnStatusCode": false,
+    "reporterOptions": {
+        "configFile": "dicta-shared/reporter-config.json"
+    },
+    "env":{
+        "TOOL_TESTS":true,
+        "REQUESTS_TESTS":true
+    }
+}

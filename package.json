@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/ShlomoBluth/dicta-parallels-finder#readme",
   "devDependencies": {
-    "cypress": "^7.4.0"
+    "cypress": "^7.5.0",
+    "cypress-file-upload": "^5.0.7",
+    "cypress-multi-reporters": "^1.5.0",
+    "mocha": "^9.1.0",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0"
   }
 }
