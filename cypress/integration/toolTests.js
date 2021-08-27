@@ -12,6 +12,7 @@ sizes.forEach((size) => {
     beforeEach(() => {
       cy.screenSize({size:size})
       cy.visitpage({url:'/'})
+      cy.wrap(5).eq(8)
     })
 
     it('The text in the file has been uploaded',()=>{
