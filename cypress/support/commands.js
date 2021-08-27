@@ -82,7 +82,7 @@ Cypress.Commands.add('synopsisRequest',({url,status=200,message='',delaySeconds=
 })
 
 Cypress.Commands.add('waitForResultsPage',()=>{
-  cy.url({timeout:30000}).should('eq','https://parallels-dev--parallels-finder.netlify.app/results')
+  cy.url({timeout:30000}).should('eq','https://parallels-finder.netlify.app/results')
 })
 
 Cypress.Commands.add('allParallelsExistInTheText',()=>{

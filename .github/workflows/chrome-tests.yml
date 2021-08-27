@@ -40,7 +40,7 @@ jobs:
 
     - name: Run chtome requests tests
       run: xvfb-run -s '-screen 0 1280x800x24' npx cypress run --browser chrome --spec ./cypress/integration/requestsTests.js
-      if: ${{env.REQUESTS_TESTS == 'true'}}
+      if: ${{always() && (env.REQUESTS_TESTS == 'true')}}
 
     - name: Copy test execution videos 
       run: |
