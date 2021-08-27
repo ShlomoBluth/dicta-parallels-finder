@@ -16,7 +16,9 @@ sizes.forEach((size) => {
 
     it('The text in the file has been uploaded',()=>{
       let fileText
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
       cy.get('textarea[id="textEntryArea"]').then(textareaVal=>{
         cy.readFile('cypress/fixtures/tuvtaamvadaat-014.txt').then(text=>{
@@ -29,7 +31,9 @@ sizes.forEach((size) => {
 
     it('Text in results page equivalent to uploaded text',()=>{
       let fileText
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.get('input[type="file"]').attachFile('tuvtaamvadaat-014.txt')
       cy.get('[id="del-btn"]',{timeout:20000}).should('exist')
       cy.get('textarea[id="textEntryArea"]').then(textareaVal=>{
@@ -43,7 +47,9 @@ sizes.forEach((size) => {
     })
 
     it('All parallels exist in the text',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
       //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
       cy.waitForResultsPage()
@@ -51,7 +57,9 @@ sizes.forEach((size) => {
     })
 
     it('Sources in synopsis',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
       //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
       cy.waitForResultsPage()
@@ -94,7 +102,9 @@ sizes.forEach((size) => {
     })
 
     it('All versions are equal',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
       //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
       cy.waitForResultsPage()
@@ -117,7 +127,9 @@ sizes.forEach((size) => {
     })
 
     it('The parallel result numbers are correct',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
       //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
       cy.waitForResultsPage()

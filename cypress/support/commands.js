@@ -61,7 +61,7 @@ Cypress.Commands.add('parallelsFinderRequest',({url,status=200,message='',delayS
 
 Cypress.Commands.add('synopsisRequest',({url,status=200,message='',delaySeconds=0})=>{
   cy.parallelsFinderRun({file:'הריסות ביתרמאת קלמן שולמןמבוא.txt'})
-  cy.url({timeout:30000}).should('eq','https://parallels-dev--parallels-finder.netlify.app/results')
+  cy.url({timeout:30000}).should('eq','https://parallels-finder.netlify.app/results')
   if(message.length>0){
     cy.contains(message).should('not.exist')
   }

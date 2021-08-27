@@ -2,7 +2,7 @@
 
 ////run tests on requests from parallels finder run some in hebrew mode and english mode
 
-let sizes = [[1000, 660]]//'iphone-x',
+let sizes = ['iphone-x',[1000, 660]]//'iphone-x',
 
 sizes.forEach((size) => {
 
@@ -19,7 +19,9 @@ sizes.forEach((size) => {
   
     it('Error message for parallels/api response with a delay of 60 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
         delaySeconds:60*5,
@@ -29,7 +31,9 @@ sizes.forEach((size) => {
 
     it('Error message for parallels/api response with status code 500 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
         status:500,
@@ -39,7 +43,9 @@ sizes.forEach((size) => {
 
     it('Error message for parallels/api response with a delay of 60 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
         delaySeconds:60*5,
@@ -49,7 +55,9 @@ sizes.forEach((size) => {
 
     it('Error message for parallels/api response with status code 500 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
         status:500,
@@ -59,7 +67,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/0 response with a delay of 60 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.synopsisRequest({
         url:'**/uploadfile/0',
         delaySeconds:60*5,
@@ -69,7 +79,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/0 response with status code 500 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.synopsisRequest({
         url:'**/uploadfile/0',
         status:500,
@@ -79,7 +91,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/0 response with a delay of 60 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.synopsisRequest({
         url:'**/uploadfile/0',
         delaySeconds:60*5,
@@ -89,7 +103,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/0 response with status code 500 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.synopsisRequest({
         url:'**/uploadfile/0',
         status:500,
@@ -99,7 +115,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/synopsisFilename response with a delay of 60 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile\/0)).)*$/,
         delaySeconds:60*5,
@@ -109,7 +127,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/synopsisFilename response with status code 500 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile\/0)).)*$/,
         status:500,
@@ -119,7 +139,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/synopsisFilename response with a delay of 60 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile\/0)).)*$/,
         delaySeconds:60*5,
@@ -129,7 +151,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/uploadfile/synopsisFilename response with status code 500 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile\/0)).)*$/,
         status:500,
@@ -139,7 +163,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/synopsisFilename response with a delay of 60 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile)).)*$/,
         delaySeconds:60*5,
@@ -149,7 +175,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/synopsisFilename response with status code 500 second when clicking the run button'+
     ' of search page in hebrew mode',()=>{
-      cy.setLanguageMode('Hebrew')
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile)).)*$/,
         status:500,
@@ -159,7 +187,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/synopsisFilename response with a delay of 60 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile)).)*$/,
         delaySeconds:60*5,
@@ -169,7 +199,9 @@ sizes.forEach((size) => {
 
     it('Error message for synopsis/synopsisFilename response with status code 500 second when clicking the run button'+
     ' of search page in english mode',()=>{
-      cy.setLanguageMode('English')
+      cy.setLanguageMode({
+        language:'English'
+      })
       cy.synopsisRequest({
         url:/^((?!(uploadfile)).)*$/,
         status:500,
