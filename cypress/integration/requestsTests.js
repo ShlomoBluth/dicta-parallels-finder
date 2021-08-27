@@ -2,7 +2,7 @@
 
 ////run tests on requests from parallels finder run some in hebrew mode and english mode
 
-let sizes = ['iphone-x',[1000, 660]]//'iphone-x',
+let sizes = [[1000, 660]]//'iphone-x',
 
 sizes.forEach((size) => {
 

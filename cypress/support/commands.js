@@ -1,33 +1,33 @@
 
 import 'cypress-file-upload';
 
-Cypress.Commands.add('setLanguageMode',(language)=>{
-  cy.get('body').then(elem => {
-    let languageMode
-    if(language=='Hebrew'){
-      languageMode='he'
-    }else if(language=='English'){
-      languageMode=''
-    }
-    let classAttr
-    if(elem.attr("class").substring(elem.attr("class").length-2,
-    elem.attr("class").length)=='he'||elem.attr("class").substring(0,2)=='he'){
-      classAttr='he'
-    }else{
-      classAttr=''  
-    }
-    if(classAttr!=languageMode)
-    {
-      cy.log(classAttr+' classAttr '+languageMode+' languageMode')
-      cy.get('a').contains(/^עברית$|^English$/g).click({force:true});
-    }
-    if(languageMode=='he'){
-      cy.get('a').contains(/^English$/).should('exist')
-    } else{
-      cy.get('a').contains(/^עברית$/).should('exist')
-    }
-  })
-})
+// Cypress.Commands.add('setLanguageMode',(language)=>{
+//   cy.get('body').then(elem => {
+//     let languageMode
+//     if(language=='Hebrew'){
+//       languageMode='he'
+//     }else if(language=='English'){
+//       languageMode=''
+//     }
+//     let classAttr
+//     if(elem.attr("class").substring(elem.attr("class").length-2,
+//     elem.attr("class").length)=='he'||elem.attr("class").substring(0,2)=='he'){
+//       classAttr='he'
+//     }else{
+//       classAttr=''  
+//     }
+//     if(classAttr!=languageMode)
+//     {
+//       cy.log(classAttr+' classAttr '+languageMode+' languageMode')
+//       cy.get('a').contains(/^עברית$|^English$/g).click({force:true});
+//     }
+//     if(languageMode=='he'){
+//       cy.get('a').contains(/^English$/).should('exist')
+//     } else{
+//       cy.get('a').contains(/^עברית$/).should('exist')
+//     }
+//   })
+// })
 
 Cypress.Commands.add('parallelsFinderRun',({file,text=''})=>{
   if(text.length>0){

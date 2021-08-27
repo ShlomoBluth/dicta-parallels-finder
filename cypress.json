@@ -1,7 +1,6 @@
 {
-    "baseUrl":"https://citation-dev--gracious-gates-eda4d9.netlify.app/",
+    "baseUrl":"https://parallels-finder.netlify.app/",
     "reporter": "cypress-multi-reporters",
-    "failOnStatusCode": false,
     "reporterOptions": {
         "configFile": "dicta-shared/reporter-config.json"
     },
