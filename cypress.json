@@ -6,6 +6,6 @@
     },
     "env":{
         "TOOL_TESTS":true,
-        "REQUESTS_TESTS":false
+        "REQUESTS_TESTS":true
     }
 }
