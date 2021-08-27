@@ -5,7 +5,7 @@
         "configFile": "dicta-shared/reporter-config.json"
     },
     "env":{
-        "TOOL_TESTS":false,
+        "TOOL_TESTS":true,
         "REQUESTS_TESTS":true
     }
 }
