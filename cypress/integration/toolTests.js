@@ -14,20 +14,20 @@ sizes.forEach((size) => {
       cy.visitpage({url:'/'})
     })
 
-    // it('The text in the file has been uploaded',()=>{
-    //   let fileText
-    //   cy.setLanguageMode({
-    //     language:'Hebrew'
-    //   })
-    //   cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
-    //   cy.get('textarea[id="textEntryArea"]').then(textareaVal=>{
-    //     cy.readFile('cypress/fixtures/tuvtaamvadaat-014.txt').then(text=>{
-    //       fileText=text
-    //     }).then(()=>{
-    //       expect(textareaVal.val()).eq(fileText)
-    //     })
-    //   })
-    // })
+    it('The text in the file has been uploaded',()=>{
+      let fileText
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
+      cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
+      cy.get('textarea[id="textEntryArea"]').then(textareaVal=>{
+        cy.readFile('cypress/fixtures/tuvtaamvadaat-014.txt').then(text=>{
+          fileText=text
+        }).then(()=>{
+          expect(textareaVal.val()).eq(fileText)
+        })
+      })
+    })
 
     it('Text in results page equivalent to uploaded text',()=>{
       let fileText
@@ -47,15 +47,15 @@ sizes.forEach((size) => {
       })
     })
 
-    // it('All parallels exist in the text',()=>{
-    //   cy.setLanguageMode({
-    //     language:'Hebrew'
-    //   })
-    //   cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
-    //   //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
-    //   cy.waitForResultsPage()
-    //   cy.allParallelsExistInTheText()
-    // })
+    it('All parallels exist in the text',()=>{
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
+      cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
+      //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
+      cy.waitForResultsPage()
+      cy.allParallelsExistInTheText()
+    })
 
     // it('Sources in synopsis',()=>{
     //   cy.setLanguageMode({
@@ -102,51 +102,51 @@ sizes.forEach((size) => {
     //   })
     // })
 
-    // it('All versions are equal',()=>{
-    //   cy.setLanguageMode({
-    //     language:'Hebrew'
-    //   })
-    //   cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
-    //   //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
-    //   cy.waitForResultsPage()
-    //   cy.get('[class*="p-group"]').each(group=>{
-    //     cy.get(group).within(gr=>{
-    //       if(gr.find('button').length==0){
-    //         let quote=''
-    //         cy.get('[class*="text-muted"]').first().within(()=>{
-    //           cy.get('span').each(word=>{
-    //             quote+=(word.text().replaceAll(/(\n| )/g,''))+' '
-    //           })
-    //         }).then(()=>{
-    //           cy.get('b').then(bold=>{
-    //             expect(bold.text()).eq(quote.trim())
-    //           })
-    //         })
-    //       }
-    //     })
-    //   })
-    // })
+    it('All versions are equal',()=>{
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
+      cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
+      //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
+      cy.waitForResultsPage()
+      cy.get('[class*="p-group"]').each(group=>{
+        cy.get(group).within(gr=>{
+          if(gr.find('button').length==0){
+            let quote=''
+            cy.get('[class*="text-muted"]').first().within(()=>{
+              cy.get('span').each(word=>{
+                quote+=(word.text().replaceAll(/(\n| )/g,''))+' '
+              })
+            }).then(()=>{
+              cy.get('b').then(bold=>{
+                expect(bold.text()).eq(quote.trim())
+              })
+            })
+          }
+        })
+      })
+    })
 
-    // it('The parallel result numbers are correct',()=>{
-    //   cy.setLanguageMode({
-    //     language:'Hebrew'
-    //   })
-    //   cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
-    //   //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
-    //   cy.waitForResultsPage()
-    //   cy.get('[class*="p-group"]').each(group=>{
-    //     cy.get(group).within(()=>{
-    //       let num
-    //       cy.get('[class*="results-num"]').then(numText=>{
-    //         num=parseInt(numText.text().replace(/\D/g, ""))
-    //       }).then(()=>{
-    //         cy.get('[class*="item-wrap"]').then(items=>{
-    //           cy.wrap(items.length).should('eq',num)
-    //         })
-    //       })
-    //     })
-    //   })
-    // })
+    it('The parallel result numbers are correct',()=>{
+      cy.setLanguageMode({
+        language:'Hebrew'
+      })
+      cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
+      //cy.get('button').contains(/מצא הקבלות|Find Parallels/).click({force:true})
+      cy.waitForResultsPage()
+      cy.get('[class*="p-group"]').each(group=>{
+        cy.get(group).within(()=>{
+          let num
+          cy.get('[class*="results-num"]').then(numText=>{
+            num=parseInt(numText.text().replace(/\D/g, ""))
+          }).then(()=>{
+            cy.get('[class*="item-wrap"]').then(items=>{
+              cy.wrap(items.length).should('eq',num)
+            })
+          })
+        })
+      })
+    })
 
 
   })
