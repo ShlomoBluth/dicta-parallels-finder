@@ -25,7 +25,7 @@ sizes.forEach((size) => {
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
         delaySeconds:60*5,
-        message:'אופס יש לנו בעיה יש להזין טקסט יותר קצר'
+        message:'אופס יש לנו בעיה נסו שוב בעוד מספר דקות'
       })
     })
 
@@ -49,7 +49,7 @@ sizes.forEach((size) => {
       cy.parallelsFinderRequest({
         url:'/parallels/api/**',
         delaySeconds:60*5,
-        message:'Oops. Something went wrong Please upload a shorter text.'
+        message:'Oops. Something went wrong Please try again.'
       })
     })
 

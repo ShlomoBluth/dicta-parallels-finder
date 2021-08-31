@@ -91,10 +91,12 @@ Cypress.Commands.add('allParallelsExistInTheText',()=>{
     textField=text.text()
   }).then(()=>{
     cy.get('div[id="scrollable-area"]').children().each(parallel=>{
-      cy.parallelExistInTheText({
-        text:textField,
-        parallel:parallel
-      })
+      if(!parallel.attr('class').includes('flex-row-reverse')){
+        cy.parallelExistInTheText({
+          text:textField,
+          parallel:parallel
+        })
+      }
     })
   })
 })
