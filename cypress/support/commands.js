@@ -29,13 +29,19 @@ import 'cypress-file-upload';
 //   })
 // })
 
-Cypress.Commands.add('parallelsFinderRun',({file,text=''})=>{
-  if(text.length>0){
-    cy.get('textarea[id="textEntryArea"]').type(text)
-  }else{
-    cy.get('input[type="file"]').attachFile(file)
-  }
-  cy.get('[id="del-btn"]',{timeout:20000}).should('exist')
+Cypress.Commands.add('uploadText',({file,text=''})=>{
+  cy.then(()=>{
+    if(text.length>0){
+      cy.get('textarea[id="textEntryArea"]').type(text)
+    }else{
+      cy.get('input[type="file"]').attachFile(file)
+    }
+  }).then(()=>{
+    cy.get('[id="del-btn"]',{timeout:20000}).should('exist')
+  })
+})
+
+Cypress.Commands.add('parallelsFinderRun',()=>{
   cy.get('button').contains(/מצא מקבילות|Find Parallels/).click({force:true})
 })
 
@@ -47,8 +53,9 @@ Cypress.Commands.add('parallelsFinderRequest',({url,status=200,message='',delayS
   if(message.length>0){
     cy.contains(message).should('not.exist')
   }
-  cy.parallelsFinderRun({file:'tuvtaamvadaat-014.txt'})
-  
+  cy.uploadText({text:'לכו גזרותיו הלוך וחסור עד אשר ספו תמו מן הארץ'+
+  ''})
+  cy.parallelsFinderRun()
   if(delaySeconds>0){
     cy.get('[class*="spinner"]',{timeout:1000*delaySeconds}).should('not.exist')
   }
@@ -60,7 +67,9 @@ Cypress.Commands.add('parallelsFinderRequest',({url,status=200,message='',delayS
 })
 
 Cypress.Commands.add('synopsisRequest',({url,status=200,message='',delaySeconds=0})=>{
-  cy.parallelsFinderRun({file:'הריסות ביתרמאת קלמן שולמןמבוא.txt'})
+  cy.uploadText({text:'לכו גזרותיו הלוך וחסור עד אשר ספו תמו מן הארץ'+
+  ''})
+  cy.parallelsFinderRun()
   cy.url({timeout:120000}).should('eq','https://parallels-finder.netlify.app/results')
   if(message.length>0){
     cy.contains(message).should('not.exist')

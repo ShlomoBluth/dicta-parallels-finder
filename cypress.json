@@ -5,6 +5,8 @@
         "configFile": "dicta-shared/reporter-config.json"
     },
     "env":{
+        "DEV_URL":"",
+        "LIVE_URL":"https://parallels-finder.netlify.app/",
         "TOOL_TESTS":true,
         "REQUESTS_TESTS":true
     }
