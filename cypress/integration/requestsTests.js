@@ -3,7 +3,7 @@
 ////run tests on requests from parallels finder run some in hebrew mode and english mode
 
 const urls = new Map();
-//urls.set('live',Cypress.env('LIVE_URL'))
+urls.set('live',Cypress.env('LIVE_URL'))
 urls.set('dev',Cypress.env('DEV_URL')) 
 
 const sizes= new Map();
