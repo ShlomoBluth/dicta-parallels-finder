@@ -3,8 +3,8 @@
 ////run parallels-finder-tests run some in hebrew mode and english mode
 
 const urls = new Map();
-urls.set('live',Cypress.env('LIVE_URL'))
-//urls.set('dev',Cypress.env('DEV_URL')) 
+//urls.set('live',Cypress.env('LIVE_URL'))
+urls.set('dev',Cypress.env('DEV_URL')) 
 
 const sizes= new Map();
 sizes.set('desktop',[1000, 660])
@@ -49,7 +49,13 @@ urls.forEach((urlValue,urlKey)=>{
           fileText=textareaVal.val()
         })
         cy.parallelsFinderRun()
-        cy.waitForResultsPage()
+        let currenturl
+        cy.url().then(u=>{
+          currenturl=u
+        }).then(()=>{
+          cy.parallelsFinderRun()
+          cy.waitForResultsPage(currenturl+'results')
+        })
         cy.get('div[class*="searched-text"]').then(text=>{
           expect(fileText).eq(text.text().replaceAll(/\[[0-9]*\]/g,''))
         })

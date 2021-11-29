@@ -69,8 +69,13 @@ Cypress.Commands.add('parallelsFinderRequest',({url,status=200,message='',delayS
 Cypress.Commands.add('synopsisRequest',({url,status=200,message='',delaySeconds=0})=>{
   cy.uploadText({text:'לכו גזרותיו הלוך וחסור עד אשר ספו תמו מן הארץ'+
   ''})
-  cy.parallelsFinderRun()
-  cy.url({timeout:120000}).should('eq','https://parallels-finder.netlify.app/results')
+  let currenturl
+  cy.url().then(u=>{
+    currenturl=u
+  }).then(()=>{
+    cy.parallelsFinderRun()
+    cy.waitForResultsPage(currenturl+'results')
+  })
   if(message.length>0){
     cy.contains(message).should('not.exist')
   }
@@ -90,8 +95,8 @@ Cypress.Commands.add('synopsisRequest',({url,status=200,message='',delaySeconds=
   } 
 })
 
-Cypress.Commands.add('waitForResultsPage',()=>{
-  cy.url({timeout:120000}).should('eq','https://parallels-finder.netlify.app/results')
+Cypress.Commands.add('waitForResultsPage',(url)=>{
+  cy.url({timeout:120000}).should('eq',url)
 })
 
 Cypress.Commands.add('allParallelsExistInTheText',()=>{
