@@ -137,11 +137,13 @@ urls.forEach((urlValue,urlKey)=>{
         cy.setLanguageMode({
           language:'Hebrew'
         })
-        cy.synopsisRequest({
-          url:/^((?!(uploadfile\/0)).)*$/,
-          status:500,
-          message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
-        })
+        if(urlKey=='live'){
+          cy.synopsisRequest({
+            url:/^((?!(uploadfile\/0)).)*$/,
+            status:500,
+            message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
+          })
+        }
       })
   
       it('Error message for synopsis/uploadfile/synopsisFilename response with a delay of 60 second when clicking the run button'+
@@ -161,11 +163,13 @@ urls.forEach((urlValue,urlKey)=>{
         cy.setLanguageMode({
           language:'English'
         })
-        cy.synopsisRequest({
-          url:/^((?!(uploadfile\/0)).)*$/,
-          status:500,
-          message:'Oops. Something went wrong Unable to display the Parallels screen'
-        })
+        if(urlKey=='live'){
+          cy.synopsisRequest({
+            url:/^((?!(uploadfile\/0)).)*$/,
+            status:500,
+            message:'Oops. Something went wrong Unable to display the Parallels screen'
+          })
+        }
       })
   
       it('Error message for synopsis/synopsisFilename response with a delay of 60 second when clicking the run button'+
