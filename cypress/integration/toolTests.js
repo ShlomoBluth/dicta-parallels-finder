@@ -40,7 +40,7 @@ urls.forEach((urlValue,urlKey)=>{
       })
       
 
-      it('Text in results page equivalent to uploaded text',()=>{
+      it('Text in results page equivalent to uploaded text',()=>{       
         let fileText
         cy.setLanguageMode({
           language:'Hebrew'
@@ -57,8 +57,11 @@ urls.forEach((urlValue,urlKey)=>{
           cy.waitForResultsPage(currenturl+'results')
         })
         cy.get('div[class*="searched-text"]').then(text=>{
-          expect(fileText).eq(text.text().replaceAll(/\[[0-9]*\]/g,''))
+          if(urlKey=='live'){
+            expect(fileText).eq(text.text().replaceAll(/\[[0-9]*\]/g,''))
+          }
         })
+        
       })
 
       
