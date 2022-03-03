@@ -3,7 +3,7 @@
 ////run tests on requests from parallels finder run some in hebrew mode and english mode
 
 const urls = new Map();
-urls.set('live',Cypress.env('LIVE_URL'))
+//urls.set('live',Cypress.env('LIVE_URL'))
 urls.set('dev',Cypress.env('DEV_URL')) 
 
 const sizes= new Map();
@@ -79,7 +79,7 @@ urls.forEach((urlValue,urlKey)=>{
         })
         cy.synopsisRequest({
           url:'**/uploadfile/0',
-          delaySeconds:60*5,
+          delaySeconds:60*3,
           message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
         })
       })
