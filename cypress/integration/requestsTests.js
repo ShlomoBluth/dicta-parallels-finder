@@ -3,7 +3,7 @@
 ////run tests on requests from parallels finder run some in hebrew mode and english mode
 
 const urls = new Map();
-//urls.set('live',Cypress.env('LIVE_URL'))
+urls.set('live',Cypress.env('LIVE_URL'))
 urls.set('dev',Cypress.env('DEV_URL')) 
 
 const sizes= new Map();
@@ -77,11 +77,13 @@ urls.forEach((urlValue,urlKey)=>{
         cy.setLanguageMode({
           language:'Hebrew'
         })
-        cy.synopsisRequest({
-          url:'**/uploadfile/0',
-          delaySeconds:60*3,
-          message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
-        })
+        if(urlKey=='live'){
+          cy.synopsisRequest({
+            url:'**/uploadfile/0',
+            delaySeconds:60*5,
+            message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
+          })
+        }
       })
   
       it('Error message for synopsis/uploadfile/0 response with status code 500 second when clicking the run button'+
@@ -89,11 +91,14 @@ urls.forEach((urlValue,urlKey)=>{
         cy.setLanguageMode({
           language:'Hebrew'
         })
-        cy.synopsisRequest({
-          url:'**/uploadfile/0',
-          status:500,
-          message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
-        })
+        if(urlKey=='live'){
+          cy.synopsisRequest({
+            url:'**/uploadfile/0',
+            status:500,
+            message:'אופס יש לנו בעיה לא ניתן להציג את החלון להשוואת גרסאות'
+          })
+        }
+        
       })
   
       it('Error message for synopsis/uploadfile/0 response with a delay of 60 second when clicking the run button'+
@@ -101,11 +106,13 @@ urls.forEach((urlValue,urlKey)=>{
         cy.setLanguageMode({
           language:'English'
         })
-        cy.synopsisRequest({
-          url:'**/uploadfile/0',
-          delaySeconds:60*5,
-          message:'Oops. Something went wrong Unable to display the Parallels screen'
-        })
+        if(urlKey=='live'){
+          cy.synopsisRequest({
+            url:'**/uploadfile/0',
+            delaySeconds:60*5,
+            message:'Oops. Something went wrong Unable to display the Parallels screen'
+          })
+        }
       })
   
       it('Error message for synopsis/uploadfile/0 response with status code 500 second when clicking the run button'+
@@ -113,11 +120,13 @@ urls.forEach((urlValue,urlKey)=>{
         cy.setLanguageMode({
           language:'English'
         })
-        cy.synopsisRequest({
-          url:'**/uploadfile/0',
-          status:500,
-          message:'Oops. Something went wrong Unable to display the Parallels screen'
-        })
+        if(urlKey=='live'){
+          cy.synopsisRequest({
+            url:'**/uploadfile/0',
+            status:500,
+            message:'Oops. Something went wrong Unable to display the Parallels screen'
+          })
+        }
       })
   
       it('Error message for synopsis/uploadfile/synopsisFilename response with a delay of 60 second when clicking the run button'+
