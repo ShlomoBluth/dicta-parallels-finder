@@ -10,7 +10,9 @@ on:
 jobs:
   cypress-e2e:
     name: Run on Chrome 89
-    runs-on: ubuntu-latest
+    runs-on: | 
+            ubuntu-latest
+            docker rmi $(docker images -a -q) 
     container: 
       image: cypress/browsers:node14.16.0-chrome89-ff86
       options: --user 1001
@@ -23,7 +25,7 @@ jobs:
 
     - name: Install a project with a clean slate
       run: |
-        npm ci
+        npm cix
         $(npm bin)/cypress cache path
         $(npm bin)/cypress cache list
         $(npm bin)/cypress verify
