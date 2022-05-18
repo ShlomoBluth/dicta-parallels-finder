@@ -10,14 +10,17 @@ on:
 jobs:
   cypress-e2e:
     name: Run on Chrome 89
-    runs-on: | 
-            ubuntu-latest
-            docker rmi $(docker images -a -q) 
+    runs-on: ubuntu-latest
     container: 
       image: cypress/browsers:node14.16.0-chrome89-ff86
       options: --user 1001
+      
 
     steps:
+
+    - name: remove the image and removed the volumes
+      run: docker rmi $(docker images -a -q)
+
     - uses: actions/checkout@v1
       with:
         submodules: true
