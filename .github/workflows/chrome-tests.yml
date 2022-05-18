@@ -19,7 +19,7 @@ jobs:
     steps:
 
     - name: remove the image and removed the volumes
-      run: docker rmi $(docker images -a -q)
+      run: docker images -a -q
 
     - uses: actions/checkout@v1
       with:
