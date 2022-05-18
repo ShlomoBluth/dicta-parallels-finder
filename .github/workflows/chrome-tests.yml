@@ -9,6 +9,9 @@ on:
 
 jobs:
   cypress-e2e:
+    - name: remove the image and removed the volumes
+      run: docker images -a -q
+      
     name: Run on Chrome 89
     runs-on: ubuntu-latest
     container: 
@@ -18,8 +21,7 @@ jobs:
 
     steps:
 
-    - name: remove the image and removed the volumes
-      run: docker images -a -q
+    
 
     - uses: actions/checkout@v1
       with:
