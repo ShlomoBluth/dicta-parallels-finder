@@ -20,7 +20,7 @@ jobs:
 
 
 
-  cypress-e2e:
+    cypress-e2e:
     name: Run on Chrome 89
     runs-on: ubuntu-latest
     container: 
