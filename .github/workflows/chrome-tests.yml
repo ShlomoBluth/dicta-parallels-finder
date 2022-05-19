@@ -8,11 +8,23 @@ on:
 
 
 jobs:
+        sudo sed -i.bak 's/updates/extra updates/' /etc/depmod.d/ubuntu.conf
+        sudo depmod
+        sudo modprobe zfs
+        # Workaround to provide additional free space for testing.
+        #   https://github.com/actions/virtual-environments/issues/2840
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /opt/ghc
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+
+
   cypress-e2e:
     name: Run on Chrome 89
     runs-on: ubuntu-latest
     container: 
-      image: cypress/browsers:node12.18.3-chrome89-ff86
+      image: cypress/browsers:node14.16.0-chrome89-ff86
       options: --user 1001
 
     steps:
