@@ -8,6 +8,10 @@ on:
 
 
 jobs:
+  
+  - name: Install a project with a clean slate
+      run: docker system prune
+
   cypress-e2e:
     name: Run on Chrome 89
     runs-on: ubuntu-latest
@@ -19,17 +23,6 @@ jobs:
     - uses: actions/checkout@v1
       with:
         submodules: true
-
-@@ -40,6 +40,12 @@ jobs:
-        sudo sed -i.bak 's/updates/extra updates/' /etc/depmod.d/ubuntu.conf
-        sudo depmod
-        sudo modprobe zfs
-        # Workaround to provide additional free space for testing.
-        #   https://github.com/actions/virtual-environments/issues/2840
-        sudo rm -rf /usr/share/dotnet
-        sudo rm -rf /opt/ghc
-        sudo rm -rf "/usr/local/share/boost"
-        sudo rm -rf "$AGENT_TOOLSDIRECTORY"        
 
    
 
