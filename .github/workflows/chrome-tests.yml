@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-   - name: Install a project with a clean slate
+  - name: Install a project with a clean slate
     run: |
       sudo sed -i.bak 's/updates/extra updates/' /etc/depmod.d/ubuntu.conf
       sudo depmod
