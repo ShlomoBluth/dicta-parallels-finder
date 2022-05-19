@@ -9,7 +9,7 @@ on:
 
 jobs:
    - name: Install a project with a clean slate
-      run: |
+    run: |
       sudo sed -i.bak 's/updates/extra updates/' /etc/depmod.d/ubuntu.conf
       sudo depmod
       sudo modprobe zfs
