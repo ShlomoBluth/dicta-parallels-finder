@@ -8,9 +8,6 @@ on:
 
 
 jobs:
-  
-  - name: Install a project with a clean slate
-    run: docker system prune
 
   cypress-e2e:
     name: Run on Chrome 89
