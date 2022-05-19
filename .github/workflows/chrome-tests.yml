@@ -12,7 +12,7 @@ jobs:
     name: Run on Chrome 89
     runs-on: ubuntu-latest
     container: 
-      image: cypress/browsers:node14.17.0-chrome91-ff89
+      image: cypress/browsers:node12.18.3-chrome89-ff86
       options: --user 1001
 
     steps:
