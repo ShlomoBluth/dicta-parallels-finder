@@ -42,9 +42,6 @@ urls.forEach((urlValue,urlKey)=>{
 
       it('Text in results page equivalent to uploaded text',()=>{       
         let fileText
-        cy.setLanguageMode({
-          language:'Hebrew'
-        })
         cy.get('textarea[id="textEntryArea"]').then(textareaVal=>{
           fileText=textareaVal.val()
         })
@@ -58,7 +55,9 @@ urls.forEach((urlValue,urlKey)=>{
         })
         cy.get('div[class*="searched-text"]').then(text=>{
           if(urlKey=='live'){
-            expect(fileText).eq(text.text().replaceAll(/\[[0-9]*\]/g,''))
+            // The site shows a badge with the identified source above the text; it is not part of the text
+            const resultsText=text.clone().find('.identified-text').remove().end().text()
+            expect(fileText).eq(resultsText.replaceAll(/\[[0-9]*\]/g,''))
           }
         })
         
@@ -68,9 +67,6 @@ urls.forEach((urlValue,urlKey)=>{
   
   
       it('All parallels exist in the text',()=>{
-        cy.setLanguageMode({
-          language:'Hebrew'
-        })
         cy.allParallelsExistInTheText()
       })
   

@@ -47,8 +47,10 @@ Cypress.Commands.add('parallelsFinderRun',()=>{
 
 Cypress.Commands.add('parallelsFinderRequest',({url,status=200,message='',delaySeconds=0})=>{
   cy.intercept(url, {
-    delayMs:1000*delaySeconds,
-    statusCode: status
+    delay:1000*delaySeconds,
+    statusCode: status,
+    // A real server error comes with a body; the site only shows its message when there is one
+    ...(status!=200&&{body:'Server error'})
   },)
   if(message.length>0){
     cy.contains(message).should('not.exist')
@@ -56,12 +58,10 @@ Cypress.Commands.add('parallelsFinderRequest',({url,status=200,message='',delayS
   cy.uploadText({text:'לכו גזרותיו הלוך וחסור עד אשר ספו תמו מן הארץ'+
   ''})
   cy.parallelsFinderRun()
-  if(delaySeconds>0){
-    cy.get('[class*="spinner"]',{timeout:1000*delaySeconds}).should('not.exist')
-  }
-    
   if(message.length>0){
-    cy.get('div[id*=server-failed-modal]').should('be.visible') 
+    // With a delay, only the error message matters: the site may show it while still
+    // spinning or only once the delayed response arrives
+    cy.get('div[id*=server-failed-modal]',{timeout:1000*delaySeconds+30000}).should('be.visible') 
     cy.contains(message).should('exist')
   } 
 })
@@ -80,17 +80,16 @@ Cypress.Commands.add('synopsisRequest',({url,status=200,message='',delaySeconds=
     cy.contains(message).should('not.exist')
   }
   cy.intercept(url, {
-    delayMs:1000*delaySeconds,
-    statusCode: status
+    delay:1000*delaySeconds,
+    statusCode: status,
+    // A real server error comes with a body; the site only shows its message when there is one
+    ...(status!=200&&{body:'Server error'})
   },)
   cy.get('span[class="border-bottom"]').contains(/השוואת גרסאות|View synopsis/).first().click({force:true})
 
-  if(delaySeconds>0){
-    cy.get('[class*="spinner"]',{timeout:1000*delaySeconds}).should('not.exist')
-  }
-      
   if(message.length>0){
-    cy.get('div[id*=server-failed-modal]',{timeout:10000}).should('be.visible') 
+    // With a delay, only the error message matters (see parallelsFinderRequest)
+    cy.get('div[id*=server-failed-modal]',{timeout:1000*delaySeconds+30000}).should('be.visible') 
     cy.contains(message).should('exist')
   } 
 })
